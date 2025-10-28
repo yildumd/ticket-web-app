@@ -1,0 +1,36 @@
+/* Copy the same design system from shared-assets */
+:root {
+  --primary-color: #3b82f6;
+  --status-open: #10b981;
+  --white: #ffffff;
+  --gray-200: #e5e7eb;
+  --gray-900: #111827;
+  --max-width: 1440px;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --radius-xl: 0.75rem;
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}

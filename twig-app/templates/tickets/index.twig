@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets - TicketFlow</title>
+    <style>
+        {{ include('styles/design-system.css') }}
+        
+        .tickets-page {
+            padding: 2rem 0;
+        }
+
+        .tickets-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            gap: 2rem;
+        }
+
+        .tickets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ticket-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-200);
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin: 0;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-open {
+            background-color: rgb(16 185 129 / 0.1);
+            color: var(--status-open);
+        }
+
+        .status-in-progress {
+            background-color: rgb(245 158 11 / 0.1);
+            color: var(--status-in-progress);
+        }
+
+        .status-closed {
+            background-color: rgb(107 114 128 / 0.1);
+            color: var(--status-closed);
+        }
+    </style>
+</head>
+<body>
+    {% include 'partials/header.twig' %}
+    
+    <div class="tickets-page">
+        <div class="container">
+            <div class="tickets-header">
+                <div class="header-content">
+                    <h1>Ticket Management</h1>
+                    <p>Create, view, and manage your support tickets</p>
+                </div>
+                <div class="header-actions">
+                    <a href="/tickets/create" class="btn btn-primary">
+                        Create Ticket
+                    </a>
+                </div>
+            </div>
+
+            {% if success %}
+                <div class="success-banner">
+                    {{ success }}
+                </div>
+            {% endif %}
+
+            {% if tickets is empty %}
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3>No tickets yet</h3>
+                    <p>Create your first ticket to get started</p>
+                    <a href="/tickets/create" class="btn btn-primary">Create Ticket</a>
+                </div>
+            {% else %}
+                <div class="tickets-grid">
+                    {% for ticket in tickets %}
+                        <div class="ticket-card">
+                            <div class="ticket-header">
+                                <h3 class="ticket-title">{{ ticket.title }}</h3>
+                                <span class="status-badge status-{{ ticket.status }}">
+                                    {{ ticket.status|replace({'_': ' '})|title }}
+                                </span>
+                            </div>
+                            <p class="ticket-description">{{ ticket.description }}</p>
+                            <div class="ticket-meta">
+                                <span>Priority: {{ ticket.priority|title }}</span>
+                                <span>Created: {{ ticket.created_at|date('M j, Y') }}</span>
+                            </div>
+                            <div class="ticket-actions">
+                                <a href="/tickets/{{ ticket.id }}/edit" class="btn btn-secondary btn-small">Edit</a>
+                                <form method="POST" action="/tickets/{{ ticket.id }}/delete" class="inline">
+                                    <button type="submit" class="btn btn-danger btn-small" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% include 'partials/footer.twig' %}
+</body>
+</html>

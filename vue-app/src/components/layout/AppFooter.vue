@@ -1,0 +1,23 @@
+<template>
+  <footer class="bg-gray-50 border-t border-gray-200">
+    <div class="container">
+      <div class="py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="flex items-center space-x-2 mb-4 md:mb-0">
+            <div class="w-6 h-6 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-xs">T</span>
+            </div>
+            <span class="text-lg font-bold text-gray-900">TicketFlow</span>
+          </div>
+          
+          <div class="text-gray-600 text-sm">
+            © 2024 TicketFlow. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<script setup>
+</script>
