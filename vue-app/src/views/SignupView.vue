@@ -106,7 +106,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
-import AppLayout from '../components/Layout/AppLayout.vue'
+import AppLayout from '../components/layout/AppLayout.vue'
 
 const authStore = useAuthStore()
 const router = useRouter()

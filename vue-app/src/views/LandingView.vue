@@ -91,7 +91,7 @@
 </template>
 
 <script setup>
-import AppLayout from '../components/Layout/AppLayout.vue'
+import AppLayout from '../components/layout/AppLayout.vue'
 </script>
 
 <style scoped>

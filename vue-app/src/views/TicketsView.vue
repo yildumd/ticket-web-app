@@ -57,9 +57,9 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTicketsStore } from '../stores/tickets'
-import AppLayout from '../components/Layout/AppLayout.vue'
-import TicketList from '../components/Tickets/TicketList.vue'
-import TicketForm from '../components/Tickets/TicketForm.vue'
+import AppLayout from '../components/layout/AppLayout.vue'
+import TicketList from '../components/tickets/TicketList.vue'
+import TicketForm from '../components/tickets/TicketForm.vue'
 
 const ticketsStore = useTicketsStore()
 const route = useRoute()
